@@ -1,5 +1,3 @@
 # ruby-cli-template
 
-Use this repository as a template for your Ruby CLI (command line interface) project.
-
-- Ruby version: `3.2.1`
+A command line interface app for film fans to keep a watchlist of movies to see
