@@ -6,6 +6,8 @@ class Movie
     @year = year
   end
 
+=begin
+  
   def title=(value)
     unless value.is_a?(String)
       raise TypeError, 'Title must be a string'
@@ -25,6 +27,7 @@ class Movie
       @movies[title.to_sym] = year
     end
   end 
+=end
 
   def to_str
     "#{title}" + ", " + "#{year}"
