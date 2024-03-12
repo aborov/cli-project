@@ -85,8 +85,8 @@ class Watchlist
       puts "Your watchlist is empty. Try adding some titles first."
     else
       puts "Movies on your watchlist:"
-      @movies.each do |movie|
-        puts movie.to_s
+      @movies.each do |title, year|
+        puts "#{title}, #{year}"
       end
       puts "Enjoy the film you choose!"
     end
