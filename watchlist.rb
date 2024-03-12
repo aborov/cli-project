@@ -3,15 +3,22 @@ require_relative "movie"
 class Watchlist
 
   def initialize
-    @movies = {}
+    @movies = []
   end
 
-  def start
-    puts "Hey movie fan, welcome to the Watchlist CLI!"
+=begin
+  def push(movie)
+    movie.map do |title, year|
+      @movies[title.to_sym] = year
+    end
+  end
+=end
 
+  def run
     loop do
-      
-  #    puts "\n"
+      puts "\n"
+      puts "Hey movie fan, welcome to the Watchlist!"
+
   #    if @movies.empty?
   #      puts "Your watchlist is empty. Want to start by adding the first title?"
   #      puts "Y = Yes"
@@ -42,30 +49,31 @@ class Watchlist
         when 3
           remove
         when 4
-          puts "Thanks for using the Watchlist CLI. Bye!"
+          puts "Thanks for using the Watchlist. Bye!"
           break
         else
-        puts "Oh... You entered invalid option. Try again."
+          puts "Oh... You entered invalid option. Try again."
         end
       # end
     end
   end
+ 
+  private
 
   def record
     print "Enter the movie title you'd like to add: "
     title = gets.chomp
     if @movies.find { |movie| title.to_s } == nil
-      puts "Do you know what year is that movie? Enter in YYYY format OR type No"
+      puts "What year is that movie? Enter in YYYY format"
       year = gets.chomp.to_i
-        if year == "No"
-          puts "Ok, we'll keep this title without year"
-          movie = Movie.new(title, year)
-          @movies.push(movie)
-        # elsif year.class != Integer
-        #  puts "Sorry, the year needs to be in YYYY format. Try again."
+       # if year == "No"
+       #   puts "Ok, we'll keep this title without year"
+       #   movie = Movie.new(title, year)
+       #   @movies.push(movie)
+        if year.class != Integer
+          puts "Sorry, the year needs to be in YYYY format. Try again."
         else 
-          movie = Movie.new(title, year)
-        @movies.push(movie)
+          @movies << Movie.new(title, year)
           puts "#{title} added to your watchlist!"
         end
     else puts "This movie is already in your watchlist"
@@ -76,10 +84,11 @@ class Watchlist
     if @movies.empty?
       puts "Your watchlist is empty. Try adding some titles first."
     else
+      puts "Movies on your watchlist:"
       @movies.each do |movie|
         puts movie.to_s
-        puts "Enjoy the film you choose!"
       end
+      puts "Enjoy the film you choose!"
     end
   end
   

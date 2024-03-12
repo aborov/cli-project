@@ -2,10 +2,11 @@ class Movie
   attr_accessor :title, :year
 
   def initialize(title, year)
-    self.title = title
-    self.year = year
+    @title = title
+    @year = year
   end
 
+=begin
   def title=(value)
     unless value.is_a?(String)
       raise TypeError, 'Title must be a string'
@@ -14,15 +15,21 @@ class Movie
   end
 
   def year=(value)
-    unless value.is_a(Integer)
+    unless value.is_a?(Integer)
       raise TypeError, 'Year must be an integer'
     end
     @year = value
   end
 
-  #def to_s
-  #  "@{title} @{year}"
-  #end
+  def push(movie)
+    movie.map do |title, year|
+      @movies[title.to_sym] = year
+    end
+  end
+=end  
 
+  def to_s
+    "@{title}, @{year}"
+  end
 
 end
