@@ -63,7 +63,7 @@ class Watchlist
   def record
     print "Enter the movie title you'd like to add: "
     title = gets.chomp
-    if @movies.find { |movie| title.to_s } == nil
+    #if @movies.find { |movie| title.to_s } == nil
       puts "What year is that movie? Enter in YYYY format"
       year = gets.chomp.to_i
        # if year == "No"
@@ -76,8 +76,8 @@ class Watchlist
           @movies << Movie.new(title, year)
           puts "#{title} added to your watchlist!"
         end
-    else puts "This movie is already in your watchlist"
-    end
+    #else puts "This movie is already in your watchlist"
+    #end
   end
 
   def pick
@@ -86,7 +86,7 @@ class Watchlist
     else
       puts "Here are some films you could watch:"
       @movies.each do |movie|
-       print movie.to_str
+       print "\n" + movie.to_str
        # print @movies
       end
       puts "\nEnjoy the film you choose!"
@@ -96,13 +96,13 @@ class Watchlist
   def remove
     print "Enter the movie title you'd like to remove: "
     title = gets.chomp
-    if @movies.find { |movie| title.to_s } == nil
-      puts "There is no such a title on your watchlist!"
-    else 
+    #if @movies.find { |movie| title.to_sym } == nil
+    #  puts "There is no such a title on your watchlist!"
+    #else 
       # movie = @movies.find { |title| 
       #   title.to_s }
       @movies.delete(title)
       puts "Ok, #{title.to_s} removed from your watchlist."
-    end
+    #end
   end
 end
