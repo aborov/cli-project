@@ -46,15 +46,15 @@ class Watchlist
   def record
     print "Enter the movie title you'd like to add: "
     title = gets.chomp
-    if movies[title].nil?
+    if @movies.find { |movie| title.to_s } == nil
       puts "Do you know what year is that movie? Enter in YYYY format OR type No"
-      year = gets.chomp
+      year = gets.chomp.to_i
         if year == "No"
           puts "Ok, we'll keep this title without year"
           movie = Movie.new(title, year)
           @movies.push(movie)
-        elsif year.class != Integer
-          puts "Sorry, the year needs to be in YYYY format. Try again."
+        # elsif year.class != Integer
+        #  puts "Sorry, the year needs to be in YYYY format. Try again."
         else 
           movie = Movie.new(title, year)
           @movies.push(movie)
