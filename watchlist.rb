@@ -63,8 +63,15 @@ class Watchlist
   def remove
     print "Enter the movie title you'd like to remove: "
     title = gets.chomp
-      @movies.delete(title)
-      puts "Ok, #{title.to_s} removed from your watchlist."
+    puts "What year is that movie? Enter in YYYY format"
+    year = gets.chomp
+        if year.class != Integer
+          puts "Sorry, the year needs to be in YYYY format. Try again."
+        else
+       
+          @movies.delete(title, year)
+        end
+      puts "Ok, #{title} removed from your watchlist."
   end
 
 end

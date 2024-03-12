@@ -21,12 +21,6 @@ class Movie
     end
     @year = value
   end
-
-  def push(movie)
-    movie.map do |title, year|
-      @movies[title.to_sym] = year
-    end
-  end 
 =end
 
   def to_str
