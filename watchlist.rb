@@ -1,23 +1,31 @@
+require_relative "movie"
+
 class Watchlist
 
   def initialize
-    @movies = []
+    @movies = {}
   end
 
   def start
     puts "Hey movie fan, welcome to the Watchlist CLI!"
 
     loop do
-      puts "\n"
-      if @movies.empty?
-        puts "Your watchlist is empty. Want to start by adding the first title?"
-        puts "Y = Yes"
-        puts "N = No"
-        proceed = gets.chomp
-        if proceed == "Y"
-          record
-        end
-      else
+      
+  #    puts "\n"
+  #    if @movies.empty?
+  #      puts "Your watchlist is empty. Want to start by adding the first title?"
+  #      puts "Y = Yes"
+  #      puts "N = No"
+  #      proceed = gets.chomp
+  #      if proceed == "Y"
+   #       record
+    #    else
+    #      break
+     #   end
+  #    break
+  # end
+     # else
+    
         puts "What you'd like to do today?"
         puts "1. Add a new film to watch sometime"
         puts "2. Pick a film to watch now"
@@ -39,7 +47,7 @@ class Watchlist
         else
         puts "Oh... You entered invalid option. Try again."
         end
-      end
+      # end
     end
   end
 
@@ -57,7 +65,7 @@ class Watchlist
         #  puts "Sorry, the year needs to be in YYYY format. Try again."
         else 
           movie = Movie.new(title, year)
-          @movies.push(movie)
+        @movies.push(movie)
           puts "#{title} added to your watchlist!"
         end
     else puts "This movie is already in your watchlist"
