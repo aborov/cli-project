@@ -84,23 +84,24 @@ class Watchlist
     if @movies.empty?
       puts "Your watchlist is empty. Try adding some titles first."
     else
-      puts "Movies on your watchlist:"
-      @movies.each do |title, year|
-        puts "#{title}, #{year}"
+      puts "Here are some films you could watch:"
+      @movies.each do |movie|
+       print movie.to_str
+       # print @movies
       end
-      puts "Enjoy the film you choose!"
+      puts "\nEnjoy the film you choose!"
     end
   end
   
   def remove
     print "Enter the movie title you'd like to remove: "
     title = gets.chomp
-    if movies[title].nil?
+    if @movies.find { |movie| title.to_s } == nil
       puts "There is no such a title on your watchlist!"
     else 
-      movie = @movies.find { |title| 
-        title.to_s }
-      @movies.delete(movie)
+      # movie = @movies.find { |title| 
+      #   title.to_s }
+      @movies.delete(title)
       puts "Ok, #{title.to_s} removed from your watchlist."
     end
   end

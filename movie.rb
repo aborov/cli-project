@@ -28,8 +28,8 @@ class Movie
   end
 =end  
 
-  def to_s
-    "@{title}, @{year}"
+  def to_str
+    "#{title}" + ", " + "#{year}"
   end
 
 end
