@@ -17,33 +17,39 @@ class Watchlist
       puts "Choose your option: "
       choice = gets.chomp.to_i
       puts "\n"
-        case choice
-        when 1
-          record
-        when 2
-          pick
-        when 3
-          remove
-        when 4
-          puts "Thanks for using the Watchlist. Bye!"
-          break
-        else
-          puts "Oh... You entered invalid option. Try again."
-        end
+      case choice
+      when 1
+        title, year = get_movie_details_from_user
+        record(title, year)
+      when 2
+        pick
+      when 3
+        title, year = get_movie_details_from_user
+        remove(title, year)
+      when 4
+        puts "Thanks for using the Watchlist. Bye!"
+        break
+      else
+        puts "Oh... You entered invalid option. Try again."
+      end
     end
   end
 
-  def record
-    print "Enter the movie title you'd like to add: "
+  def get_movie_details_from_user
+    print "Enter the movie title: "
     title = gets.chomp
-      puts "What year is that movie? Enter in YYYY format"
-      year = gets.chomp.to_i
-        if year.to_s.length != 4 || year > Time.now.year
-          puts "Sorry, the year is invalid. It needs to be in YYYY format."
-        else 
-          @movies << Movie.new(title, year)
-          puts "Great, #{title} (#{year}) added to your watchlist!"
-        end
+    print "Enter the movie year (YYYY format): "
+    year = gets.chomp.to_i
+    return title, year
+  end
+
+  def record(title, year)
+    if year.to_s.length != 4 || year > Time.now.year
+      puts "Sorry, the year is invalid. It needs to be in YYYY format."
+    else 
+      @movies << Movie.new(title, year)
+      puts "\nGreat, #{title} (#{year}) added to your watchlist!"
+    end
   end
 
   def pick
@@ -52,28 +58,23 @@ class Watchlist
     else
       puts "Here are some films you could watch:"
       @movies.each do |movie|
-       print movie.to_str
+        puts movie.to_str
       end
-      puts "\nEnjoy the film you choose!"
+      puts "Enjoy the film you choose!"
     end
   end
   
-  def remove
-    print "Enter the movie title you'd like to remove: "
-    title = gets.chomp
-    puts "What year is that movie? Enter in YYYY format"
-    year = gets.chomp.to_i
-        if year.to_s.length != 4 || year > Time.now.year
-          puts "Sorry, the year is invalid. It needs to be in YYYY format.."
-        else
-          found_movie = @movies.find { |movie| movie.title == title && movie.year == year }
-          if found_movie
-            @movies.delete(found_movie)
-            puts "Ok, #{found_movie.to_str} removed from your watchlist."
-          else
-            puts "Sorry, couldn't find #{title} in your watchlist."
-          end
-        end
+  def remove(title, year)
+    if year.to_s.length != 4 || year > Time.now.year
+      puts "Sorry, the year is invalid. It needs to be in YYYY format."
+    else
+      found_movie = @movies.find { |movie| movie.title == title && movie.year == year }
+      if found_movie
+        @movies.delete(found_movie)
+        puts "\nOk, #{found_movie.to_str} removed from your watchlist."
+      else
+        puts "\nSorry, couldn't find #{title} in your watchlist."
+      end
+    end
   end
-
 end
