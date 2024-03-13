@@ -68,8 +68,9 @@ class Watchlist
         if year.class != Integer
           puts "Sorry, the year needs to be in YYYY format. Try again."
         else
-       
-          @movies.delete(title, year)
+          found_movie = @movies.find { |movie| movie.title == title }
+          @movies.delete(found_movie)
+         # @movies.delete(title, year)
         end
       puts "Ok, #{title} removed from your watchlist."
   end
