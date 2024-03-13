@@ -8,8 +8,7 @@ class Watchlist
 
   def run
     loop do
-      puts "\n"
-      puts "Hey movie fan, welcome to the Watchlist!"
+      puts "\nHey movie fan, welcome to the Watchlist!"
       puts "What you'd like to do today?"
       puts "1. Add a new film to watch sometime"
       puts "2. Pick a film to watch now"
@@ -31,7 +30,6 @@ class Watchlist
         else
           puts "Oh... You entered invalid option. Try again."
         end
-
     end
   end
 
@@ -40,11 +38,11 @@ class Watchlist
     title = gets.chomp
       puts "What year is that movie? Enter in YYYY format"
       year = gets.chomp.to_i
-        if year.class != Integer
-          puts "Sorry, the year needs to be in YYYY format. Try again."
+        if year.to_s.length != 4 || year > Time.now.year
+          puts "Sorry, the year is invalid. It needs to be in YYYY format."
         else 
           @movies << Movie.new(title, year)
-          puts "#{title} added to your watchlist!"
+          puts "Great, #{title} (#{year}) added to your watchlist!"
         end
   end
 
@@ -54,7 +52,7 @@ class Watchlist
     else
       puts "Here are some films you could watch:"
       @movies.each do |movie|
-       print "\n" + movie.to_str
+       print movie.to_str
       end
       puts "\nEnjoy the film you choose!"
     end
@@ -65,15 +63,15 @@ class Watchlist
     title = gets.chomp
     puts "What year is that movie? Enter in YYYY format"
     year = gets.chomp.to_i
-        if year.class != Integer
-          puts "Sorry, the year needs to be in YYYY format. Try again."
+        if year.to_s.length != 4 || year > Time.now.year
+          puts "Sorry, the year is invalid. It needs to be in YYYY format.."
         else
           found_movie = @movies.find { |movie| movie.title == title && movie.year == year }
           if found_movie
             @movies.delete(found_movie)
-            puts "Ok, #{found_movie.title} removed from your watchlist."
+            puts "Ok, #{found_movie.to_str} removed from your watchlist."
           else
-             puts "Movie not found in your watchlist."
+            puts "Sorry, couldn't find #{title} in your watchlist."
           end
         end
   end

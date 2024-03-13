@@ -6,25 +6,8 @@ class Movie
     @year = year
   end
 
-=begin
-  
-  def title=(value)
-    unless value.is_a?(String)
-      raise TypeError, 'Title must be a string'
-    end
-    @title = value.capitalize
-  end
-
-  def year=(value)
-    unless value.is_a?(Integer)
-      raise TypeError, 'Year must be an integer'
-    end
-    @year = value
-  end
-=end
-
   def to_str
-    "#{title}" + ", " + "#{year}"
+    "#{title} (#{year})"
   end
 
 end
