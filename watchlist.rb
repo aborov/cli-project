@@ -70,7 +70,6 @@ class Watchlist
         else
           found_movie = @movies.find { |movie| movie.title == title }
           @movies.delete(found_movie)
-         # @movies.delete(title, year)
         end
       puts "Ok, #{title} removed from your watchlist."
   end
