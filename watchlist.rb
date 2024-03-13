@@ -64,14 +64,18 @@ class Watchlist
     print "Enter the movie title you'd like to remove: "
     title = gets.chomp
     puts "What year is that movie? Enter in YYYY format"
-    year = gets.chomp
+    year = gets.chomp.to_i
         if year.class != Integer
           puts "Sorry, the year needs to be in YYYY format. Try again."
         else
-          found_movie = @movies.find { |movie| movie.title == title }
-          @movies.delete(found_movie)
+          found_movie = @movies.find { |movie| movie.title == title && movie.year == year }
+          if found_movie
+            @movies.delete(found_movie)
+            puts "Ok, #{found_movie.title} removed from your watchlist."
+          else
+             puts "Movie not found in your watchlist."
+          end
         end
-      puts "Ok, #{title} removed from your watchlist."
   end
 
 end
